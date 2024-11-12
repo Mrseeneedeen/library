@@ -1,0 +1,10 @@
+const {{camelCase name}}Route = (require('express'))['Router']()
+const { validateSchema } = require('../../middleware/validateSchema.js');
+const {{camelCase name}}Controller = require('./{{camelCase name}}Controller.js');
+const {{camelCase name}}Schema = require('./{{camelCase name}}Schema.js');
+
+{{camelCase name}}Route.post('/APIPATH',
+	validateSchema([{{camelCase name}}Schema.schemaSomething]),
+	{{camelCase name}}Controller.controllerFunction,
+)
+module.exports = {{camelCase name}}Route

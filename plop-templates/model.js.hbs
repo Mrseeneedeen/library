@@ -1,0 +1,9 @@
+const { knex } = require('../../knex');
+
+class {{camelCase name}}Model{
+  modalFunction({ parameter } ) {
+    let sql = 'EXEC STORE ?';
+    return knex.raw(sql,[parameter]);
+  }
+}
+module.exports = new {{camelCase name}}Model()

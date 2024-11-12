@@ -1,0 +1,14 @@
+const { failed, success } = require('../../config/response.js');
+const {{camelCase name}}Model = require('./{{camelCase name}}Model.js');
+
+class {{camelCase name}}Controller{
+    async controllerFunction(req, res) {
+        try {
+            const result = {{camelCase name}}Model.modalFunction(req.body)
+            {{> success }}
+        } catch (error) {
+            {{> failed }}
+        }
+    }
+}
+module.exports = new {{camelCase name}}Controller()

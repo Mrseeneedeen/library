@@ -1,0 +1,10 @@
+const Joi = require("joi");
+const schemaSomething = Joi.object({
+    appNo: Joi.string().required().allow('', null),
+    appName: Joi.string().required(),
+    userLogin: Joi.string().required(),
+    mapApp: Joi.array().required(),
+})
+module.exports = {
+    schemaSomething
+}
