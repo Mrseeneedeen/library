@@ -7,19 +7,22 @@ module.exports = async function (plop) {
     "inquirer-autocomplete-prompt"
   );
 
+  plop.load('plop-pack-remove');
+
   plop.setPrompt("autocomplete", autocompletePrompt);
 
   plop.setPartial("success", 'success(res, "สร้างข้อมูลสำเร็จ");');
   plop.setPartial("failed", 'failed(res, "สร้างข้อมูลไม่สำเร็จ", error);');
+
   // สร้าง Helper
-  plop.setHelper("camelCase", (text) => {
-    return text
-      .replace(/\d+/g, "") // Remove all numbers
-      .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
-        if (/\s+/.test(match)) return ""; // Remove spaces
-        return index === 0 ? match.toLowerCase() : match.toUpperCase();
-      });
-  });
+  // plop.setHelper("camelCase", (text) => {
+  //   return text
+  //     .replace(/\d+/g, "") // Remove all numbers
+  //     .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
+  //       if (/\s+/.test(match)) return ""; // Remove spaces
+  //       return index === 0 ? match.toLowerCase() : match.toUpperCase();
+  //     });
+  // });
 
   const versionChoices = ["v1", "v2"];
   const sourceFunction = (_answersSoFar, input) => {
@@ -134,9 +137,11 @@ module.exports = async function (plop) {
     ],
     actions: [
       {
-        type: "remove",
-        path: "src/api/{{version}}/{{camelCase name}}",
-      },
+        type: 'remove',
+        path: 'src/api/{{version}}/{{camelCase name}}',
+        force: true,// Allow removal of files outside of the project root. Defauslts to false
+        skipIfNonexistent: true // When true it will skip if the file does not exist. When false, it will throw an error. Defaults to false
+      }
     ],
   });
 };
